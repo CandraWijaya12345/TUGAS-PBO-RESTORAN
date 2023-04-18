@@ -6,11 +6,11 @@ public class Restoran {
     private static ArrayList<Restoran> daftarRestoran = new ArrayList<>();
     private static ArrayList<Menu> menuu = new ArrayList<>();
 
-    public static ArrayList<Pesanan> pesanann = new ArrayList<>();
+//    public static ArrayList<Pesanan> pesanann = new ArrayList<>();
     private String namaRestoran;
     private String alamatRestoran;
     private static ArrayList<String> daftarMenu;
-    private ArrayList<Double> harga;
+    private static ArrayList<Double> harga;
 
     private static Scanner scanner = new Scanner(System.in);
     private ArrayList<Restoran> setDaftarRestoran;
@@ -39,7 +39,7 @@ public class Restoran {
         return daftarMenu;
     }
 
-    public ArrayList<Double> getHarga() {
+    public static ArrayList<Double> getHarga() {
         return harga;
     }
 
@@ -51,13 +51,15 @@ public class Restoran {
         this.alamatRestoran = alamat;
     }
 
-    public void setDaftarMenu(ArrayList<String> daftarMenu) {
-        this.daftarMenu = daftarMenu;
-    }
+//    public void setDaftarMenu(ArrayList<String> daftarMenu) {
+//        this.daftarMenu = daftarMenu;
+//    }
+//
+//    public void setHarga(ArrayList<Double> harga) {
+//        this.harga = harga;
+//    }
 
-    public void setHarga(ArrayList<Double> harga) {
-        this.harga = harga;
-    }
+
 
     public static int size() {
         return 0;
@@ -169,61 +171,56 @@ public class Restoran {
             int memesanlagi;
             do {
                 Scanner input = new Scanner(System.in);
-                ArrayList<String> namaRestoran = new ArrayList<>(getDaftarRestoran());
 
-                System.out.print("Daftar restoran : ");
-                for (String restoran : namaRestoran) {
-                    System.out.println("- " + restoran);
+                String namaResto,menuPesan;
+                int jmlhPesanan;
+                double harga;
+                int i = 1;
+                for(Restoran resto : daftarRestoran){
+                    System.out.printf("%d- %s ",i, resto);
+                    i++;
                 }
-
                 System.out.print("Pilih restoran : ");
-                String daftarRestoran = input.nextLine();
+                int noRes = input.nextInt();
+                input.nextLine();
 
-                ArrayList<String> daftarMenu = new ArrayList<>(getDaftarMenu());
+                if(noRes > daftarRestoran.size()) {
+                    System.out.println("Restaurant tak tersedia");
+                }else{
+                    System.out.println("Daftar Menu:");
+                    int a = 1;
+                    for (String menuu : daftarMenu) {
+                        System.out.printf("%d- %s%n",a, menuu);
+                        a++;
+                    }
 
-                System.out.println("Daftar Menu:");
-
-                for (String menu : daftarMenu) {
-                    System.out.println("- " + menu);
-                }
-
-                ArrayList<String> pesanan = new ArrayList<String>();
-                ArrayList<Double> harga = new ArrayList<Double>();
-
-                System.out.print("Pesan menu yang diinginkan: ");
-                String menuu = input.nextLine();
-
-                if (!daftarMenu.contains(menuu)) {
-                    System.out.println("Makanan tidak tersedia di menu.");
-                } else {
-                    pesanan.add(menuu);
-
-                    System.out.print("Jumlah: ");
-                    int jumlah = input.nextInt();
+                    System.out.print("Pesan menu yang diinginkan: ");
+                    int menuu = input.nextInt();
                     input.nextLine();
 
-                    double hargaMakanan = getHarga(menuu) * jumlah;
-                    harga.add(hargaMakanan);
-                    pesanann.add(daftarRestoran,pesanan,harga);
+                    if (menuu > daftarMenu.size()) {
+                        System.out.println("Makanan tidak tersedia di menu.");
+                    } else {
+                        menuPesan = daftarMenu.get(menuu-1);
 
+                        System.out.print("Jumlah: ");
+                        int jumlah = input.nextInt();
+                        jmlhPesanan = jumlah;
+
+
+                        double total = 20000;
+                        harga = total;
+                        Pesanan pesanananTambah = new Pesanan(menuPesan,jmlhPesanan, harga);
+                        Pesanan.addPesanan(pesanananTambah);
+
+                    }
                 }
-                System.out.print("Apakah anda ingin memesan lagi? (1 = ya, 2 = tidak");
+                System.out.print("Apakah anda ingin memesan lagi? (1 = ya, 2 = tidak) : ");
                 memesanlagi = scanner.nextInt();
             }while(memesanlagi==1);
             }else{
-            System.out.println("Restoran tidak tersedia!");
+            System.out.println("Restoran tidak tersedia! bawah");
         }
         }
-
-    private static double getHarga(String menuu) {
-        return 0;
     }
 
-    public void lihatPesanan() {
-        if (pesanann.size() > 0) {
-            for (int i = 0; i < pesanann.size(); i++) {
-                System.out.println(i + 1 + ". " + pesanann.get(i).toString());
-            }
-        }
-    }
-}

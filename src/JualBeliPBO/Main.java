@@ -42,8 +42,10 @@ public class Main {
                                 break;
                             case"2":
                                 restoran.buatPesanan();
+                                break;
                             case"3":
-                                restoran.lihatPesanan();
+                                Pesanan.lihatPesanan();
+                                break;
                         }
                         System.out.print("Apakah Anda ingin login kembali? (1 = ya, 2 = tidak) : ");
                         loginkembali = scanner.nextInt();
