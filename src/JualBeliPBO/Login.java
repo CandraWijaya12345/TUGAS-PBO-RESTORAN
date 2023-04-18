@@ -6,10 +6,10 @@ public class Login {
     private String pw_admin;
 
     public Login() {
-        this.user = "user";
-        this.pw_user = "user";
-        this.admin = "admin";
-        this.pw_admin = "admin";
+        this.user = "Customer";
+        this.pw_user = "CustomerPassword";
+        this.admin = "Admin";
+        this.pw_admin = "AdminPassword";
     }
 
     public Login(String user, String pw_user, String admin, String pw_admin) {
