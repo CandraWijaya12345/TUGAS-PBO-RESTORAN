@@ -5,6 +5,11 @@ I Gusti Ngurah Agung Candra Wijaya
 
 Program berikut adalah program sederhana yang dibuat untuk memesan makanan secara online dari sebuah restoran. Program ini menggunakan bahasa pemrograman Java yang mendapatkan input dan output melalui Command Prompt.
 
+# UML
+UML (Unified Modeling Language) merupakan program yang digunakan untuk merepresentasikan struktur sistem berbasis objek dengan menggambarkan kelas-kelas yang terdapat di dalamnya, atribut-atribut yang dimiliki oleh kelas tersebut, dan relasi yang terjadi antara kelas-kelas tersebut. Contoh penggunaan diagram kelas UML dapat ditemukan pada restoran sederhana seperti gambar di bawah.
+
+![UML](/img/uml.drawio.png "UML")
+
 # Alur Progam
 Alur dari program restoran online sederhana ini adalah sebagai berikut.
 
