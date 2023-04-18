@@ -6,13 +6,14 @@ public class Restoran {
     private static ArrayList<Restoran> daftarRestoran = new ArrayList<>();
     private static ArrayList<Menu> menuu = new ArrayList<>();
 
-    private static ArrayList<Pesanan> pesanann = new ArrayList<>();
+    public static ArrayList<Pesanan> pesanann = new ArrayList<>();
     private String namaRestoran;
     private String alamatRestoran;
     private static ArrayList<String> daftarMenu;
     private ArrayList<Double> harga;
 
     private static Scanner scanner = new Scanner(System.in);
+    private ArrayList<Restoran> setDaftarRestoran;
 
     public Restoran(String namaRestoran, String alamatRestoran, ArrayList<String> daftarMenu, ArrayList<Double> harga) {
         this.namaRestoran = namaRestoran;
@@ -61,6 +62,9 @@ public class Restoran {
     public static int size() {
         return 0;
     }
+    public void getDaftarRestoran(){
+        setDaftarRestoran = daftarRestoran;
+    }
 
     public static Object get(int i) {
         return null;
@@ -75,21 +79,25 @@ public class Restoran {
     public static void tambahRestoran() {
         ArrayList<String> daftarMenu = new ArrayList<>();
         ArrayList<Double> harga = new ArrayList<>();
+//        System.out.println("\n\t Press enter to continue...\n");
+//        scanner.nextLine();
         System.out.print("Nama Restoran: ");
         String namaRestoran = scanner.nextLine();
+        System.out.println(namaRestoran);
         System.out.print("Alamat Restoran: ");
         String alamatRestoran = scanner.nextLine();
 
         int kembali;
+
+        String menu;
         do {
             System.out.print("Masukkan Jumlah Menu: ");
-            int jumlahMenu = Integer.parseInt(scanner.nextLine());
-
+            int jumlahMenu = Main.validInt();
             for (int i = 0; i < jumlahMenu; i++) {
                 System.out.print("Nama Menu " + (i + 1) + ": ");
-                String menu = scanner.nextLine();
+                menu = scanner.nextLine();
                 System.out.print("Harga Menu " + (i + 1) + ": ");
-                Double hrg = Double.parseDouble(scanner.nextLine());
+                double hrg = Main.validDouble();
                 daftarMenu.add(menu);
                 harga.add(hrg);
                 Menu menubaru = new Menu(daftarMenu, harga);
@@ -99,6 +107,8 @@ public class Restoran {
             daftarRestoran.add(restoranTambah);
             System.out.print("Apakah anda ingin menambah menu lagi? (1 = ya, 2 = tidak) : ");
             kembali = scanner.nextInt();
+            System.out.println("\n\t Press enter to continue...\n");
+            scanner.nextLine();
         } while (kembali == 1);
     }
 
@@ -158,9 +168,18 @@ public class Restoran {
         if (daftarRestoran.size() > 0) {
             int memesanlagi;
             do {
-                ArrayList<String> daftarMenu = new ArrayList<>(getDaftarMenu());
-
                 Scanner input = new Scanner(System.in);
+                ArrayList<String> namaRestoran = new ArrayList<>(getDaftarRestoran());
+
+                System.out.print("Daftar restoran : ");
+                for (String restoran : namaRestoran) {
+                    System.out.println("- " + restoran);
+                }
+
+                System.out.print("Pilih restoran : ");
+                String daftarRestoran = input.nextLine();
+
+                ArrayList<String> daftarMenu = new ArrayList<>(getDaftarMenu());
 
                 System.out.println("Daftar Menu:");
 
@@ -185,6 +204,7 @@ public class Restoran {
 
                     double hargaMakanan = getHarga(menuu) * jumlah;
                     harga.add(hargaMakanan);
+                    pesanann.add(daftarRestoran,pesanan,harga);
 
                 }
                 System.out.print("Apakah anda ingin memesan lagi? (1 = ya, 2 = tidak");

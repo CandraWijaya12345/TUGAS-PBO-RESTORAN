@@ -1,4 +1,5 @@
 package JualBeliPBO;
+import java.util.*;
 import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -46,6 +47,8 @@ public class Main {
                         }
                         System.out.print("Apakah Anda ingin login kembali? (1 = ya, 2 = tidak) : ");
                         loginkembali = scanner.nextInt();
+                        System.out.println("\n\t Press enter to continue...\n");
+                        scanner.nextLine();
                     }while(loginkembali==2);
 
                 } else if (user.equals(user_login.getAdmin())) {
@@ -82,5 +85,38 @@ public class Main {
                 System.out.println("Username atau Password Anda tidak sesuai, silahkan coba lagi!");
             }
         } while (!berhasilLogin);
+    }
+    public static double validDouble(){
+        double inp;
+        Scanner scan = new Scanner(System.in);
+        // System.out.print("\t=> ");
+        while(true){
+            try{
+                inp = scan.nextDouble();
+                scan.nextLine();
+                return inp;
+                // break;
+            }catch(InputMismatchException e){
+                System.out.print("\tInput salah!, Ulang\n\t=> ");
+                scan.nextLine();
+            }
+        }
+    }
+
+    public static int validInt(){
+        int inp;
+        Scanner scan = new Scanner(System.in);
+        System.out.print("\t=> ");
+        while(true){
+            try{
+                inp = scan.nextInt();
+                scan.nextLine();
+                return inp;
+                // break;
+            }catch(InputMismatchException e){
+                System.out.print("\tInput salah!, Ulang\n\t=> ");
+                scan.nextLine();
+            }
+        }
     }
 }

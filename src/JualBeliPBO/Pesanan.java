@@ -3,7 +3,7 @@ package JualBeliPBO;
 import java.util.ArrayList;
 
 public class Pesanan {
-    private ArrayList<String> daftarPesanan;
+    public ArrayList<String> daftarRestoran;
     private Restoran namaRestoran;
     private Menu menuPesan;
     private int jmlhPesanan;
